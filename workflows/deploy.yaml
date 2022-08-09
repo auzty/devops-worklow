@@ -1,0 +1,64 @@
+# ********************************************************************************
+# Workflow to perform docker build and upload to jfrog
+# ********************************************************************************
+
+name: docker build flow for all spring boot based services
+
+env:
+  #jarid: "${{ inputs.download_artifact_name }}-${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}"
+  jarid: "${{ inputs.download_artifact_name }}"
+  GITHUB_TOKEN: ${{ secrets.MY_PAT }}
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_call:
+    inputs:
+      # tag to be added to the image
+      tag:
+        required: true
+        type: string
+      # port to expose in docker container
+      port_to_expose:
+        required: true
+        type: number
+      #artifact to download
+      download_artifact_name:
+        required: true
+        type: string
+      #ecr_host
+      ecr_host:
+        required: true
+        type: string
+    secrets:
+      #tocken used to download repos
+      #token:
+        #required: true
+      # AWS access id to login and upload image to ECR
+      AWS_ACCESS_KEY_ID:
+        required: true
+      # AWS secret to login and upload image to ECR
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+
+jobs:
+  # ****************************************************************
+  # Gradle build
+  # 1. Compile
+  # 2. run unit tests
+  # ****************************************************************
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Checkout cco-config repo
+        uses: actions/checkout@v3
+        with:
+          repository: "WELLS-DIA-RIS-CCO/cco-config"
+          token: $GITHUB_TOKEN
+          #token: ${{ secrets.token }}
+          #token: ${{ env.GITHUB_TOKEN }}
+          path: cco-config

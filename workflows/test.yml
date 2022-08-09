@@ -1,0 +1,31 @@
+name: testing run from other
+
+env:
+  GITHUB_TOKEN: ${{ secrets.MY_PAT }}
+
+on:
+  workflow_call:
+    inputs:
+      # tag to be added to the image
+      tag:
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploystage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message that this is not prod
+        run: echo just printing the message and cloning repo
+      - name: checkout another repo 
+        uses: actions/checkout@v3
+        with:
+          repository: "auzty/hello-world"
+          token: $GITHUB_TOKEN
+          path: hello-world
+      - name: listing file
+        run: ls -lah hello-world
