@@ -34,4 +34,4 @@ jobs:
       - name: listing file
         run: ls -lah hello-world
       - name: run python  script
-        run: python hello-world/justrun.py
+        run: python hello-world/py/justrun.py
