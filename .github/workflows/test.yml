@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print message that this is not prod
-        run: echo "just printing the message and cloning repo $GITHUB_TOKENKU ${{ secrets.MY_PAT2 }}"
+        run: echo "just printing the message and cloning repo $GITHUB_TOKENKU ${{ secrets.MY_PAT2 }} test ... : $${{ secrets.envPAT }}"
       - name: checkout another repo 
         uses: actions/checkout@v3
         with:
