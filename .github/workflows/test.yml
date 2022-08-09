@@ -11,6 +11,9 @@ on:
       tag:
         required: false
         type: string
+    secrets:
+      mytoken:
+        required: true
 
 permissions:
   id-token: write
@@ -21,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print message that this is not prod
-        run: echo "just printing the message and cloning repo $GITHUB_TOKENKU ${{ secrets.MY_PAT2 }} test ...  ${{ secrets.MY_SECRET_PAT }} "
+        run: echo "just printing the message and cloning repo $GITHUB_TOKENKU ${{ secrets.MY_PAT2 }} test ...  ${{ secrets.mytoken }} "
       - name: checkout another repo 
         uses: actions/checkout@v3
         with:
