@@ -2,6 +2,7 @@ name: testing run from other
 
 env:
   GITHUB_TOKEN: ${{ secrets.MY_PAT }}
+  GITHUB_TOKENKU: ${{ secrets.MY_PAT2 }}
 
 on:
   workflow_call:
@@ -20,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print message that this is not prod
-        run: echo "just printing the message and cloning repo $GITHUB_TOKEN"
+        run: echo "just printing the message and cloning repo $GITHUB_TOKENKU ${{ secrets.MY_PAT2 }}"
       - name: checkout another repo 
         uses: actions/checkout@v3
         with:
