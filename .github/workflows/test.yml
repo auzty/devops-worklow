@@ -33,3 +33,5 @@ jobs:
           path: hello-world
       - name: listing file
         run: ls -lah hello-world
+      - name: run python  script
+        run: python hello-world/justrun.py
