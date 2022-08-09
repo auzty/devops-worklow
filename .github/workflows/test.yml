@@ -8,7 +8,7 @@ on:
     inputs:
       # tag to be added to the image
       tag:
-        required: true
+        required: false
         type: string
 
 permissions:
