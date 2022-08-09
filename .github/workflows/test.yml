@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Print message that this is not prod
         run: echo "just printing the message and cloning repo $GITHUB_TOKENKU ${{ secrets.MY_PAT2 }} test ...  ${{ secrets.MY_SECRET_PAT }} "
-        with:
-          MY_SECRET_PAT: ${{ secrets.MYSECRET_PAT }}
       - name: checkout another repo 
         uses: actions/checkout@v3
         with:
