@@ -1,4 +1,4 @@
-name: testing run from other
+name: callme from others
 
 env:
   GITHUB_TOKEN: ${{ secrets.MY_PAT }}
