@@ -11,6 +11,8 @@ on:
       tag:
         required: false
         type: string
+    shared-env:
+      required: false
     secrets:
       ACCESS_TOKEN_KU:
         required: true
