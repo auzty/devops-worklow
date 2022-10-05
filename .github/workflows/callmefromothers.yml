@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test env from before
-        run: echo "${{env.TESTINGENV}}"
+        run: echo "${{env.shared-env}}"
       - name: checkout another repo 
         uses: actions/checkout@v3
         with:
