@@ -7,7 +7,7 @@ on:
       tag:
         required: false
         type: string
-      shared-env:
+      shared-accname:
         type: string
         required: true
 
@@ -17,4 +17,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test env from before
-        run: echo "${{inputs.shared-env}}"
+        run: echo "${{inputs.shared-accname}}"
