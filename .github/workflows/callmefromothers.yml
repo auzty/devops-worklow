@@ -23,6 +23,8 @@ jobs:
   deploystage:
     runs-on: ubuntu-latest
     steps:
+      - name: test env from before
+        run: echo "${{env.TESTINGENV}}"
       - name: checkout another repo 
         uses: actions/checkout@v3
         with:
