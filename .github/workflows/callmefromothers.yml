@@ -12,6 +12,7 @@ on:
         required: false
         type: string
       shared-env:
+        type: string
         required: true
     secrets:
       ACCESS_TOKEN_KU:
