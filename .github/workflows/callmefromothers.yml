@@ -12,7 +12,7 @@ on:
         required: false
         type: string
     secrets:
-      mytoken:
+      MYTOKEN:
         required: true
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: "auzty/hello-world"
-          token: ${{secrets.mytoken}}
+          token: ${{secrets.MYTOKEN}}
           path: hello-world
       - name: listing file
         run: ls -lah hello-world
