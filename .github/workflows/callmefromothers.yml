@@ -14,27 +14,11 @@ on:
       shared-env:
         type: string
         required: true
-    secrets:
-      ACCESS_TOKEN_KU:
-        required: true
 
-permissions:
-  id-token: write
-  contents: read
 
 jobs:
   deploystage:
     runs-on: ubuntu-latest
     steps:
       - name: test env from before
-        run: echo "${{inputs.shared-env}}"
-      - name: checkout another repo 
-        uses: actions/checkout@v3
-        with:
-          repository: "auzty/hello-world"
-          token: ${{secrets.ACCESS_TOKEN_KU}}
-          path: hello-world
-      - name: listing file
-        run: ls -lah hello-world
-      - name: run python  script
-        run: python hello-world/py/justrun.py
+        run: echo "${{env.shared-env}}"
