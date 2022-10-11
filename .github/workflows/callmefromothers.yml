@@ -10,6 +10,9 @@ on:
       shared-accname:
         type: string
         required: true
+      mytoken:
+        required: false
+        type: string
 
 
 jobs:
@@ -23,7 +26,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: "auzty/hello-world"
-          token: ${{secrets.mytoken}}
+          token: ${{inputs.mytoken}}
           ref: "jajalbranch"
           path: hello-world
       - name: listing file
