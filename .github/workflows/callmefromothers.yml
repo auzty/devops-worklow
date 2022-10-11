@@ -10,9 +10,6 @@ on:
       shared-accname:
         type: string
         required: true
-      mytoken:
-        required: false
-        type: string
 
 
 jobs:
@@ -22,14 +19,3 @@ jobs:
       - name: test env from before
         run: echo "${{inputs.shared-accname}}"
 
-      - name: checkout another repo 
-        uses: actions/checkout@v3
-        with:
-          repository: "auzty/hello-world"
-          token: ${{inputs.mytoken}}
-          ref: "jajalbranch"
-          path: hello-world
-      - name: listing file
-        run: ls -lah hello-world
-      - name: run python  script
-        run: python hello-world/py/justrun.py
