@@ -1,0 +1,34 @@
+name: call with input
+
+on:
+  workflow_call:
+    inputs:
+      build-type:
+        type: string
+        required: true
+
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: running job1
+        run: echo "Running JOb 1"
+  job2:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.skip-jobs == 'no'
+    needs: job1
+    steps: 
+      - name: running job2
+        run: echo "Running JOb 2"
+      #- name: Try to fail
+      #  run: exit 1
+
+  job3:
+    runs-on: ubuntu-latest
+    needs: [job1,job2]
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && ( github.event.inputs.build-type == 'build' ||  github.event.inputs.build-type == 'buildAndDeploy' )
+    steps: 
+      - name: running job3
+        run: echo "Running JOb 3"
+
